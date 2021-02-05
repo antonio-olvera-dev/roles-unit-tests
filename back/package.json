@@ -4,7 +4,6 @@
   "description": "",
   "main": "./src/index.js",
   "type": "module",
-  
   "scripts": {
     "start": "node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,18 +11,7 @@
   "author": "antonioolvera1995@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
-  },
-  "include": [
-    ".src/**/* *",
-    "./src/*",
-    "./src/routes/*",
-    "./routes/*"
-  ],
-  "exclude": [
-    ".src/**/* *",
-    "./src/*",
-    "./src/routes/*",
-    "./routes/*"
-  ]
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1"
+  }
 }
