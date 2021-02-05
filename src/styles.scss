@@ -26,6 +26,20 @@ body {
   flex-direction: row;
 }
 
+.start--col {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.start--row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+
 .full{
   width: 100%;
   height: 100%;

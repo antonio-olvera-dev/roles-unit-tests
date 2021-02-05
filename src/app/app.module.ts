@@ -13,9 +13,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input'
-import {MatRadioModule} from '@angular/material/radio';;
+import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule} from '@angular/material/table';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 
 import { UsersComponent } from './core/users/users.component';
 import { AdminComponent } from './core/admin/admin.component';
@@ -38,7 +39,10 @@ import { AdminComponent } from './core/admin/admin.component';
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule,
+    FormsModule 
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
