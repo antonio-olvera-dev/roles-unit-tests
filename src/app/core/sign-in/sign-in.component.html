@@ -1,0 +1,31 @@
+<section class="center--col full">
+    <div class="card card__login center--col">
+
+
+<form [formGroup]="formG" (ngSubmit)="saveForm()"  class="center--col full">
+    <h1>Sign In</h1>
+
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="text">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-radio-group formControlName="role" class="radio" aria-label="Select an option">
+        <mat-radio-button class="radio__in" value="users">Users</mat-radio-button>
+        <mat-radio-button class="radio__in" value="admin">Admin</mat-radio-button>
+      </mat-radio-group>
+
+    <button mat-raised-button type="submit" color="primary">Sign In</button>
+
+</form>
+
+    </div>
+</section>

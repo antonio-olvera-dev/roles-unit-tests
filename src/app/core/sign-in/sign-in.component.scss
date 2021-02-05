@@ -1,0 +1,14 @@
+.card__login {
+  height: 30em;
+  width: 30em;
+}
+
+mat-form-field {
+  width: 15em;
+}
+
+.radio{
+    & .radio__in{
+        margin: 2em;
+    }
+}
