@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "roles-unit-tests"
+  "defaultProject": "roles-unit-tests",
+  "cli": {
+    "analytics": "03369c48-baef-428f-b671-8bc69426095d"
+  }
 }
