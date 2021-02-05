@@ -13,6 +13,7 @@ export class MainServiceService {
   };
   constructor() { }
 
+  //---Accesing---
   async signIn() {
     try {
 
@@ -37,6 +38,7 @@ export class MainServiceService {
     }
   }
 
+  //---Data---
   async setUsers() {
     try {
 
@@ -46,6 +48,22 @@ export class MainServiceService {
   }
 
   async setAdmin() {
+    try {
+
+    } catch (error) {
+
+    }
+  }
+
+  async getUsers() {
+    try {
+
+    } catch (error) {
+
+    }
+  }
+
+  async getAdmin() {
     try {
 
     } catch (error) {

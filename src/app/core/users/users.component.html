@@ -10,7 +10,7 @@
             <button class="ml-4" mat-raised-button color="primary" (click)="saveForm()">Send</button>
     </div>
 
-    <table mat-table [dataSource]="dataSource" class="user__table">
+    <table *ngIf="update" mat-table [dataSource]="dataSource" class="user__table">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
@@ -21,19 +21,19 @@
           <td mat-cell *matCellDef="let element"> {{element.position}} </td>
         </ng-container>
       
-        <!-- Name Column -->
+        <!-- Email Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef> Email </th>
           <td mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
       
-        <!-- Weight Column -->
+        <!-- Rol Column -->
         <ng-container matColumnDef="rol">
           <th mat-header-cell *matHeaderCellDef> Rol </th>
           <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
         </ng-container>
       
-        <!-- Symbol Column -->
+        <!-- Text Column -->
         <ng-container matColumnDef="text">
           <th mat-header-cell *matHeaderCellDef> Text </th>
           <td mat-cell *matCellDef="let element"> {{element.text}} </td>

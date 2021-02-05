@@ -9,27 +9,46 @@ import { MainServiceService, Tabla } from 'src/app/shared/services/main-service.
 export class UsersComponent implements OnInit {
 
 
-  dataSource: Tabla[] = [{position: 1, email: 'Hydrogen@gmio.com', rol: "users", text: 'Hfwefwe'}];
+  dataSource: Tabla[] = [{ position: 1, email: 'Hydrogen@gmio.com', rol: "users", text: 'Hfwefwe' }];
   displayedColumns = ['position', 'email', 'rol', 'text'];
 
   text: string = "";
-  constructor(private service:MainServiceService) { }
+  update: boolean = false;
+  constructor(private service: MainServiceService) {
+    this.load();
+   }
 
   ngOnInit(): void {
   }
 
+  async load() {
+    try {
+
+      const data = await this.service.getUsers();
+      console.log(data);
+      
+      setTimeout(() => {
+        this.update = true;
+      }, 100);
+    } catch (error) {
+
+    }
+  }
   saveForm() {
     if (this.text.length > 0) {
-      console.log(this.text);
+      this.update = false;
       const num = this.dataSource.length + 1;
-      const newData:Tabla = {
+      const newData: Tabla = {
         position: num,
-        email:this.service.user.email,
-        rol:this.service.user.rol,
+        email: this.service.user.email,
+        rol: this.service.user.rol,
         text: this.text
       }
       this.dataSource.push(newData);
       this.service.setUsers();
+      setTimeout(() => {
+        this.update = true;
+      }, 100);
     }
   }
 
