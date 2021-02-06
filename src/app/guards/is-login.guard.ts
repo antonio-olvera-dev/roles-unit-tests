@@ -10,6 +10,10 @@ export class IsLoginGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
 
+    const login = localStorage.getItem('login');
+    if (login != 'true') {
+      return false;
+    }
 
     return true;
   }

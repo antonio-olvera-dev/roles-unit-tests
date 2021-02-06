@@ -33,7 +33,11 @@ class KeyController {
         }
       );
 
-      res.send(token);
+      res.send({
+        token:token,
+        email: dataLogin.email,
+        role: dataLogin.role
+      });
 
     } catch (error) {
       console.log(error);
@@ -64,7 +68,11 @@ class KeyController {
         }
       );
 
-      res.send(token);
+      res.send({
+        token:token,
+        email: body.email,
+        role: body.role
+      });
 
     } catch (error) {
       console.log(error);

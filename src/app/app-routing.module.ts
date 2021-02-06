@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'signIn', component: SignInComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UsersComponent, canActivate: [IsLoginGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [IsAdminGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [IsLoginGuard,IsAdminGuard] },
   { path: '**', redirectTo:"login"  },
 ];
 

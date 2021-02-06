@@ -6,26 +6,29 @@ import ax from "axios";
 })
 export class MainServiceService {
 
-  //TODO cambiar
-  // user?:User;
   user: User = {
-    email: "Toni@gmail.com",
-    rol: "Users",
+    email: "",
+    role: ""
   };
   constructor(private route: Router) { }
 
   //---Accesing---
-  async signIn(body:SignIn) {
+  async signIn(body: SignIn) {
     try {
       const conex = await ax({
         method: 'post',
         url: 'http://localhost:3000/key/signIn',
         data: body
-      }).then((data)=>{
-        localStorage.setItem('token', `${data.data}`);
-        localStorage.setItem('login', `true`);
-        this.route.navigate(['/users']);        
       });
+
+      localStorage.setItem('token', `${conex.data.token}`);
+      localStorage.setItem('login', `true`);
+      this.user = {
+        email: conex.data.email,
+        role: conex.data.role
+      };
+      this.route.navigate(['/users']);
+
     } catch (error) {
       console.log(error);
       localStorage.setItem('token', `0`);
@@ -33,17 +36,22 @@ export class MainServiceService {
     }
   }
 
-  async login(body:Login) {
+  async login(body: Login) {
     try {
       const conex = await ax({
         method: 'post',
         url: 'http://localhost:3000/key/login',
         data: body
-      }).then((data)=>{
-        localStorage.setItem('token', `${data.data}`);
-        localStorage.setItem('login', `true`);
-        this.route.navigate(['/users']);        
       });
+
+      localStorage.setItem('token', `${conex.data.token}`);
+      localStorage.setItem('login', `true`);
+      this.user = {
+        email: conex.data.email,
+        role: conex.data.role
+      };
+      this.route.navigate(['/users']);
+
     } catch (error) {
       console.log(error);
       localStorage.setItem('token', `0`);
@@ -51,52 +59,89 @@ export class MainServiceService {
     }
   }
 
-  async isLogin() {
+   isLogin():boolean {
     try {
-
+      const login = localStorage.getItem('login');
+      if (login != 'true') {
+        return false;
+      }
+      return true;
     } catch (error) {
-
+      return false;
     }
   }
 
   //---Data---
-  async setUsers() {
-    // try {
-    //   const conex = await ax({
-    //     method: 'post',
-    //     // headers: {'X-Custom-Header': 'foobar'}
-    //     url: 'http://localhost:3000/key/signIn',
-    //     data: body
-    //   }).then((data)=>{
-    //     localStorage.setItem('token', `${data.data}`);
-    //     this.route.navigate(['/users']);        
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  async setUsers(body:Tabla) {
+    try {
+      const token:string |null = localStorage.getItem('token');
+      const conex = await ax({
+        method: 'post',
+        url: 'http://localhost:3000/users',
+        headers: {'authoritation': `${token}`},
+        data: {
+          email: body.email,
+          role: body.role,
+          text: body.text
+        }
+      });
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+
   }
 
-  async setAdmin() {
+  async setAdmin(body:Tabla) {
     try {
-
+      const token:string |null = localStorage.getItem('token');
+      const conex = await ax({
+        method: 'post',
+        url: 'http://localhost:3000/admin',
+        headers: {'authoritation': `${token}`},
+        data: {
+          email: body.email,
+          role: body.role,
+          text: body.text
+        }
+      });
+      return true;
     } catch (error) {
-
+      console.log(error);
+      return false;
     }
+
   }
 
   async getUsers() {
     try {
+      const token:string | null = localStorage.getItem('token');
+      const conex = await ax({
+        method: 'get',
+        url: 'http://localhost:3000/users',
+        headers: {'authoritation': `${token}`}
+      });
+      return conex.data;
 
     } catch (error) {
-
+      console.log(error);
+      return false;
     }
   }
 
   async getAdmin() {
     try {
-
+      const token:string | null = localStorage.getItem('token');
+      const conex = await ax({
+        method: 'get',
+        url: 'http://localhost:3000/admin',
+        headers: {'authoritation': `${token}`}
+      });
+      return conex.data;
     } catch (error) {
-
+      console.log(error);
+      return false;
     }
   }
 
@@ -105,13 +150,13 @@ export class MainServiceService {
 export interface Tabla {
   position: number,
   email: string,
-  rol: string,
+  role: string,
   text: string
 }
 
 export interface User {
   email: string,
-  rol: string,
+  role: string,
 }
 
 
