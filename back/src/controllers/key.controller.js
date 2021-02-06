@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { MY_SECRET } from "../config.js";
 import { db } from "./../database.js";
-import { login } from "./../models/keyLogin.model.js";
 import { signIn } from "./../models/keySignIn.model.js";
 
 class KeyController {
