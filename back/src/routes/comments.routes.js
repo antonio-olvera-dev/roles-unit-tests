@@ -8,11 +8,11 @@ class CommentsRoutes{
     constructor(){
 
         //---Routes---
-        this.router.get("/users",commentsController.getUsers);
-        this.router.post("/users",commentsController.setUsers);
+        this.router.get("/users", checkJwkt, commentsController.getUsers);
+        this.router.post("/users", checkJwkt, commentsController.setUsers);
         //-----------------------------------------------------
-        this.router.get("/admin",checkJwkt,commentsController.getAdmin);
-        this.router.post("/admin",checkJwkt,commentsController.setAdmin);
+        this.router.get("/admin", checkJwkt,commentsController.getAdmin);
+        this.router.post("/admin", checkJwkt,commentsController.setAdmin);
 
 
     }
