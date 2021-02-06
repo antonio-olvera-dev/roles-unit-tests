@@ -2,6 +2,7 @@
   "name": "roles-unit-tests",
   "version": "0.0.0",
   "scripts": {
+    "setting": "npm i ./back/src/index.js && npm i",
     "go": "node ./back/src/index.js",
     "ng": "ng",
     "start": "ng serve",

@@ -8,7 +8,7 @@ import { Login, MainServiceService } from 'src/app/shared/services/main-service.
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  
+
   hide: boolean = true;
   formG: FormGroup;
 
@@ -23,17 +23,22 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
- async saveForm() { 
-    if (this.formG.valid) {
-          
-      const obj:Login = {
-        email: this.formG.get('email')?.value,
-        password: this.formG.get('password')?.value
-      }
+  async saveForm() {
+try {
+  if (this.formG.valid) {
 
-      await this.service.login(obj);
-      
+    const obj: Login = {
+      email: this.formG.get('email')?.value,
+      password: this.formG.get('password')?.value
     }
+
+    await this.service.login(obj);
+
+  }
+} catch (error) {
+  console.log(error);
+  
+}
   }
 
 
